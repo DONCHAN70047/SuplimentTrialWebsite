@@ -1,0 +1,83 @@
+.mb-mobile-header {
+  background: #fff;
+  padding: 10px 14px;
+
+
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+.mb-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.mb-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mb-logo {
+  height: 34px;
+  object-fit: contain;
+}
+
+
+.mb-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+}
+
+
+.mb-bag {
+  position: relative;
+}
+
+
+.mb-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #fbc02d;
+  color: #000;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+
+.mb-search {
+  margin-top: 12px;
+  background: #efefef;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+
+.mb-search-icon {
+  font-size: 18px;
+  color: #777;
+  margin-right: 10px;
+}
+
+
+.mb-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 15px;
+  outline: none;
+}

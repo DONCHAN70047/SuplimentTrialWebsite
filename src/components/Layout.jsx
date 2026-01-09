@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
+import HeaderWrapper from "./Header/HeaderWrapper";
+import MobileHeader from "./Header/MobileHeader/MobileHeader";
 import Footer from "./Footer";
 import "./Layout.css";
 
 const Layout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -14,24 +28,31 @@ const Layout = ({ children }) => {
     }
   }, []);
 
+
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
       const next = !prev;
-      if (next) {
-        document.body.classList.add("dark-mode");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem("theme", "light");
-      }
+      document.body.classList.toggle("dark-mode", next);
+      localStorage.setItem("theme", next ? "dark" : "light");
       return next;
     });
   };
 
   return (
     <div className="app-layout">
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="main-content">{children}</main>
+      {isMobile ? (
+        <MobileHeader />
+      ) : (
+        <HeaderWrapper
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+      )}
+
+      <main className="main-content">
+        {children}
+      </main>
+
       <Footer />
     </div>
   );
