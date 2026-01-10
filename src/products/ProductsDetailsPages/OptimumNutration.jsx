@@ -21,6 +21,10 @@ const OptimumNutration = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [productImages, setProductImages] = useState([]);
   const [isVariantOpen, setIsVariantOpen] = useState(false);
+  const [showMagnifier, setShowMagnifier] = useState(false);
+  const [magnifierPosition, setMagnifierPosition] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef(null);
 
   useEffect(() => {
     setAllProducts(getAllProducts());
@@ -37,14 +41,12 @@ const OptimumNutration = () => {
     setSelectedWeight(product.weight);
     setActiveImageIndex(0);
 
-    // Generate 4 images for gallery (using main image + placeholder variations)
+    // Use product images array (image, image1, image2, image3) for 4 image gallery
     const mainImg = product.image || defaultImage;
-    setProductImages([
-      mainImg,
-      mainImg,
-      mainImg,
-      mainImg
-    ]);
+    const img1 = product.image1 || mainImg;
+    const img2 = product.image2 || mainImg;
+    const img3 = product.image3 || mainImg;
+    setProductImages([mainImg, img1, img2, img3]);
 
     const filtered = allProducts.filter(p => p.id !== product.id);
     const shuffled = [...filtered].sort(() => 0.5 - Math.random());
@@ -133,18 +135,75 @@ const OptimumNutration = () => {
     setActiveImageIndex(index);
   };
 
+  // Handle mouse move for magnifier
+  const handleMouseMove = (e) => {
+    if (!imageRef.current) return;
+    
+    const elem = imageRef.current;
+    const { left, top, width, height } = elem.getBoundingClientRect();
+    
+    // Calculate cursor position relative to image (as percentage)
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    
+    // Set cursor position for the magnified background
+    setCursorPosition({ x, y });
+    
+    // Set magnifier lens position (60 = half of lens size 120px)
+    setMagnifierPosition({
+      x: e.clientX - left - 60,
+      y: e.clientY - top - 60
+    });
+  };
+
+  const handleMouseEnter = () => {
+    setShowMagnifier(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowMagnifier(false);
+  };
+
   return (
     <div className="product-page">
       <div className="product-container">
         {/* Image Gallery Section */}
         <div className="image-gallery">
-          <div className="main-image-box">
+          <div 
+            className="main-image-box"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <img
+              ref={imageRef}
               src={productImages[activeImageIndex] || defaultImage}
               alt={currentProduct.name}
               className="main-product-image"
             />
+            
+            {/* Magnifier Lens */}
+            {showMagnifier && (
+              <div 
+                className="magnifier-lens"
+                style={{
+                  left: `${magnifierPosition.x}px`,
+                  top: `${magnifierPosition.y}px`
+                }}
+              />
+            )}
           </div>
+          
+          {/* Zoomed Image Panel */}
+          {showMagnifier && (
+            <div 
+              className="zoom-panel"
+              style={{
+                backgroundImage: `url(${productImages[activeImageIndex] || defaultImage})`,
+                backgroundPosition: `${cursorPosition.x}% ${cursorPosition.y}%`
+              }}
+            />
+          )}
           
           {/* Thumbnail Scroll */}
           <div className="thumbnail-container">
@@ -178,7 +237,7 @@ const OptimumNutration = () => {
 
           {/* Rating */}
           <div className="rating">
-            <span className="stars">★★★★★</span>
+            {/* <span className="stars">★★★★★</span> */}
             <span className="rating-count">4.5 ★ 12.8k</span>
           </div>
 
@@ -192,6 +251,34 @@ const OptimumNutration = () => {
 
           {/* Choose Flavour and Weight Accordion */}
           <div className="variant-accordion">
+            {/* Choose your protein - Card Grid */}
+            {flavorOptions.length > 0 && (
+              <div className="protein-selection">
+                <h4 className="protein-selection-title">Choose your protein</h4>
+                <div className="protein-cards-grid">
+                  {flavorOptions.map(f => {
+                    const matchedProduct = relatedProducts.find(
+                      p => p.flavors === f && p.weight === selectedWeight
+                    );
+                    return (
+                      <div
+                        key={f}
+                        className={`protein-card ${selectedFlavor === f ? 'active' : ''}`}
+                        onClick={() => handleFlavorClick(f)}
+                      >
+                        <h5 className="protein-card-title">{f}</h5>
+                        <ul className="protein-card-features">
+                          <li>Premium quality protein</li>
+                          <li>{matchedProduct ? `₹${matchedProduct.price}` : 'Check price'}</li>
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Choose Flavour and Weight - Collapsible */}
             <div 
               className="variant-header"
               onClick={() => setIsVariantOpen(!isVariantOpen)}
@@ -199,6 +286,7 @@ const OptimumNutration = () => {
               <span className="variant-title">
                 Choose Flavour and Weight : <strong>{selectedFlavor}, {selectedWeight}</strong>
               </span>
+              <span className="variant-change-btn">Change</span>
               <span className={`variant-arrow ${isVariantOpen ? 'open' : ''}`}>
                 {isVariantOpen ? '∧' : '∨'}
               </span>

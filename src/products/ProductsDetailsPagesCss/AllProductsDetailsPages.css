@@ -32,7 +32,8 @@
   padding: 50px 20px;
   background: var(--bg-page);
   /* font-family: "Segoe UI", sans-serif; */
-  font-family: Robodo;
+  /* font-family: Robodo; */
+  font-family: 'Inter', sans-serif;
   color: var(--text-main);
 }
 
@@ -55,6 +56,7 @@
   flex-direction: column;
   gap: 15px;
   max-width: 450px;
+  position: relative;
 }
 
 .main-image-box {
@@ -62,10 +64,11 @@
   background: #fff;
   border-radius: 1px;
   border: 1px solid var(--border);
-  overflow: hidden;
+  overflow: visible;
   width: 520px; /* Increased width for better appearance */
   max-width: 100%;
   margin: 0 auto;
+  cursor: crosshair;
 }
 
 .main-product-image {
@@ -78,7 +81,38 @@
 }
 
 .main-image-box:hover .main-product-image {
-  transform: scale(1.05);
+  /* Magnifier handles zoom effect */
+  opacity: 1;
+}
+
+/* Magnifier Lens */
+.magnifier-lens {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Zoom Panel - appears to the right of the image */
+.zoom-panel {
+  position: absolute;
+  left: 540px;
+  top: 0;
+  width: 500px;
+  height: 500px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 250%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  pointer-events: none;
 }
 
 /* Thumbnail Container */
@@ -246,6 +280,7 @@ body.dark-mode .rating .rating-count {
   background: var(--orange-light);
   border-radius: 6px;
   border: 1px solid var(--orange-main);
+  border: none;
 }
 
 .sell-price {
@@ -955,6 +990,7 @@ p.tax-info{
   margin: 20px 0;
   background: #fff;
   overflow: hidden;
+  border: none;
 }
 
 .variant-header {
@@ -963,13 +999,14 @@ p.tax-info{
   align-items: center;
   padding: 16px 20px;
   cursor: pointer;
-  background: #fff;
+  background: #fffbeb;
   transition: background 0.2s ease;
+  border-color: #fbbf24;
 }
 
-.variant-header:hover {
+/* .variant-header:hover {
   background: #f9fafb;
-}
+} */
 
 .variant-title {
   font-size: 19px;
@@ -978,6 +1015,19 @@ p.tax-info{
 
 .variant-title strong {
   color: #1f2937;
+}
+
+.variant-change-btn {
+  color:blue;
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.variant-change-btn:hover {
+  color:blue;
 }
 
 .variant-arrow {
@@ -995,6 +1045,65 @@ p.tax-info{
 
 .variant-arrow.open {
   transform: rotate(180deg);
+}
+
+/* Protein Selection Cards */
+.protein-selection {
+  margin-bottom: 20px;
+}
+
+.protein-selection-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.protein-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.protein-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.protein-card:hover {
+  border-color: #fbbf24;
+}
+
+.protein-card.active {
+  border: 2px solid #fbbf24;
+  background: #fffbeb;
+}
+
+.protein-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.protein-card-features {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.protein-card-features li {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.protein-card.active .protein-card-features li {
+  color: #4b5563;
 }
 
 .variant-content {
@@ -1139,6 +1248,36 @@ p.tax-info{
   .variant-cart-btn,
   .variant-buy-btn {
     width: 100%;
+  }
+
+  /* Protein cards responsive */
+  .protein-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .protein-card {
+    padding: 12px 14px;
+  }
+
+  .protein-card-title {
+    font-size: 13px;
+  }
+
+  /* Hide magnifier on mobile */
+  .magnifier-lens,
+  .zoom-panel {
+    display: none !important;
+  }
+}
+
+/* Hide zoom panel on tablets */
+@media (max-width: 1200px) {
+  .zoom-panel {
+    display: none !important;
+  }
+  
+  .magnifier-lens {
+    display: none !important;
   }
 }
 
