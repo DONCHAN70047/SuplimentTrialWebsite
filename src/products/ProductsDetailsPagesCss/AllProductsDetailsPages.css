@@ -127,7 +127,7 @@
 
 .thumbnail-scroll {
   display: flex;
-  gap: 25px;
+  gap: 15px;
   overflow-x: auto;
   padding: 8px 5px;
   scroll-behavior: smooth;
@@ -564,7 +564,7 @@ p.tax-info{
   transition: all 0.2s ease;
 }
 
- /* .suggested-buy-btn:hover {
+/* .suggested-buy-btn:hover {
   text-colo
 }  */
 
@@ -1005,21 +1005,18 @@ p.tax-info{
   border-radius: 5px;
   transition: background 0.2s ease;
   border-color: #fbbf24;
-  width: 690px;
-  height: 47px;
+  width: 100%;
+  max-width: 690px;
+  height: auto;
+  min-height: 47px;
+  box-sizing: border-box;
 }
-
-/* .variant-header:hover {
-  background: #f9fafb;
-} */
 
 .variant-title {
   font-size: 16px;
   color: #1f2937;
-}
-
-.variant-title strong {
-  color: #1f2937;
+  flex: 1;
+  word-break: break-word;
 }
 
 .variant-change-btn {
@@ -1228,34 +1225,34 @@ p.tax-info{
 /* Mobile responsive for variant accordion */
 @media (max-width: 768px) {
   .variant-header {
-    padding: 14px 16px;
+    padding: 12px 14px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .variant-title {
+    font-size: 14px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .variant-change-btn {
+    font-size: 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .variant-arrow {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
   }
 
   .variant-content {
     padding: 0 16px 16px;
   }
 
-  .variant-btn {
-    padding: 8px 14px;
-    font-size: 12px;
-  }
-
-  .variant-btn.weight-btn {
-    min-width: 55px;
-    padding: 8px 12px;
-  }
-
-  .variant-btn-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .variant-cart-btn,
-  .variant-buy-btn {
-    width: 100%;
-  }
-
-  /* Protein cards responsive */
   .protein-cards-grid {
     grid-template-columns: 1fr;
   }
