@@ -42,9 +42,9 @@
   max-width: 1200px;
   margin: auto;
   display: flex;
-  gap: 120px;
+  gap: 60px;
   background: var(--bg-card);
-  padding: 35px;
+  padding: 10px;
   border-radius: 0px;
   border: 1px solid var(--border);
   border: none;
@@ -54,14 +54,14 @@
 .image-gallery {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
   max-width: 450px;
   position: relative;
 }
 
 .main-image-box {
   position: relative;
-  background: #fff;
+  background:#f3f3f5;
   border-radius: 1px;
   border: 1px solid var(--border);
   overflow: visible;
@@ -69,6 +69,8 @@
   max-width: 100%;
   margin: 0 auto;
   cursor: crosshair;
+ /* padding-left: 70px;
+ padding-right: 70px; */
 }
 
 .main-product-image {
@@ -125,7 +127,7 @@
 
 .thumbnail-scroll {
   display: flex;
-  gap: 10px;
+  gap: 25px;
   overflow-x: auto;
   padding: 8px 5px;
   scroll-behavior: smooth;
@@ -145,8 +147,8 @@
   flex: 0 0 auto;
   width: 70px;
   height: 70px;
-  border: 2px solid var(--border);
-  border-radius: 8px;
+  /* border: 2px solid var(--border);
+  border-radius: 8px; */
   overflow: hidden;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -175,14 +177,14 @@
   justify-content: center;
 }
 
-.indicator-dot {
+/* .indicator-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--border);
   cursor: pointer;
   transition: all 0.2s ease;
-}
+} */
 
 .indicator-dot.active {
   background: var(--orange-main);
@@ -262,8 +264,8 @@ color: #111827;
 }
 
 .rating .rating-count {
-  color: var(--text-muted);
-  font-size: 14px;
+  color: black;
+  font-size: 16px;
   background: #f3f4f6;
   padding: 4px 10px;
   border-radius: 6px;
@@ -275,8 +277,8 @@ body.dark-mode .rating .rating-count {
 
 /* ===================== PRICE ===================== */
 .price-box {
-  margin-top: 22px;
-  padding: 16px 20px;
+  margin-top: 0px;
+  padding: 1px 0px;
   background: var(--orange-light);
   border-radius: 6px;
   border: 1px solid var(--orange-main);
@@ -309,7 +311,7 @@ body.dark-mode .rating .rating-count {
   margin-top: 6px;
 }
 p.tax-info{
-  font-size: 18px;
+  font-size: 14px;
   color: #111827;
 }
 /* ===================== BUTTONS ===================== */
@@ -1000,8 +1002,11 @@ p.tax-info{
   padding: 16px 20px;
   cursor: pointer;
   background: #fffbeb;
+  border-radius: 5px;
   transition: background 0.2s ease;
   border-color: #fbbf24;
+  width: 690px;
+  height: 47px;
 }
 
 /* .variant-header:hover {
@@ -1009,7 +1014,7 @@ p.tax-info{
 } */
 
 .variant-title {
-  font-size: 19px;
+  font-size: 16px;
   color: #1f2937;
 }
 
@@ -1020,7 +1025,7 @@ p.tax-info{
 .variant-change-btn {
   color:blue;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   margin-left: auto;
   margin-right: 10px;
   cursor: pointer;
