@@ -335,12 +335,12 @@ accessories: {
   slug: "accessories",
   description: "Gym accessories and fitness gear",
   products: [
-    { id: 117, name: "Gym Bag", weight: "Standard", flavors: "Average Quality", price: 499, image: "/image/Accessories/mb_gymbag.jpg", image1: "/image/Accessories/mb_gymbag.jpg", image2: "/image/Accessories/mb_gymbag.jpg", image3: "/image/Accessories/mb_gymbag.jpg", route: "/Product" },
-    { id: 118, name: "Gym Bag Premium", weight: "Standard", flavors: "Good Quality", price: 799, image: "/image/Accessories/mb_gymbag.jpg", image1: "/image/Accessories/mb_gymbag.jpg", image2: "/image/Accessories/mb_gymbag.jpg", image3: "/image/Accessories/mb_gymbag.jpg", route: "/Product" },
-    { id: 119, name: "Shaker Bottle", weight: "700ML", flavors: "Various Colors", price: 299, image: "", image1: "", image2: "", image3: "", route: "/Product" },
-    { id: 120, name: "Shaker Bottle Premium", weight: "700ML", flavors: "Various Colors", price: 499, image: "", image1: "", image2: "", image3: "", route: "/Product" },
-    { id: 121, name: "Gym Gloves", weight: "M/L/XL", flavors: "Black", price: 399, image: "", image1: "", image2: "", image3: "", route: "/Product" },
-    { id: 122, name: "Wrist Wraps", weight: "Standard", flavors: "Black/Red", price: 299, image: "", image1: "", image2: "", image3: "", route: "/Product" }
+    { id: 243, name: "Gym Bag", weight: "Standard", flavors: "Average Quality", price: 499, image: "/image/Accessories/mb_gymbag.jpg", image1: "/image/Accessories/mb_gymbag.jpg", image2: "/image/Accessories/mb_gymbag.jpg", image3: "/image/Accessories/mb_gymbag.jpg", route: "/Product" },
+    { id: 244, name: "Gym Bag Premium", weight: "Standard", flavors: "Good Quality", price: 799, image: "/image/Accessories/mb_gymbag.jpg", image1: "/image/Accessories/mb_gymbag.jpg", image2: "/image/Accessories/mb_gymbag.jpg", image3: "/image/Accessories/mb_gymbag.jpg", route: "/Product" },
+    { id: 245, name: "Shaker Bottle", weight: "700ML", flavors: "Various Colors", price: 299, image: "", image1: "", image2: "", image3: "", route: "/Product" },
+    { id: 246, name: "Shaker Bottle Premium", weight: "700ML", flavors: "Various Colors", price: 499, image: "", image1: "", image2: "", image3: "", route: "/Product" },
+    { id: 247, name: "Gym Gloves", weight: "M/L/XL", flavors: "Black", price: 399, image: "", image1: "", image2: "", image3: "", route: "/Product" },
+    { id: 248, name: "Wrist Wraps", weight: "Standard", flavors: "Black/Red", price: 299, image: "", image1: "", image2: "", image3: "", route: "/Product" }
   ]
 }
 };
